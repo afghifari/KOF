@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--primary color-->
+    <color name="bluesky">#a0cdf5</color>
+    <color name="bluesky1">#69c1f7</color>
+    <color name="darkblue">#2d5b87</color>
+    <color name="halfblue">#54a3e0</color>
+</resources>
