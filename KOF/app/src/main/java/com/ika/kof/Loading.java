@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class Loading extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class Loading extends AppCompatActivity {
                 case STOPSPLASH:
                     //remove SplashScreen from view
                     splash.setVisibility(View.GONE);
-                    Intent intentpindah = new Intent(Loading.this, MainGraph.class);
+                    Intent intentpindah = new Intent(Loading.this, MainActivity.class);
                     Loading.this.startActivity(intentpindah);
                     Loading.this.finish();
                     break;

@@ -1,8 +1,6 @@
 package com.ika.kof;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -19,7 +17,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class MainGraph extends AppCompatActivity {
+import com.ika.kof.fragment.FragmentBluetooth;
+import com.ika.kof.fragment.FragmentContact;
+import com.ika.kof.fragment.FragmentGraph;
+import com.ika.kof.fragment.FragmentNews;
+
+public class MainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,10 +39,15 @@ public class MainGraph extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private static final int PAGE_GRAPH = 0;
+    private static final int PAGE_BLUETOOTH = 1;
+    private static final int PAGE_NEWS = 2;
+    private static final int PAGE_CONTACT = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_graph);
+        setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,48 +88,15 @@ public class MainGraph extends AppCompatActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_graph, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            TextView textEmail = (TextView) rootView.findViewById(R.id.email_section);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            textView.setText("Phone  : ");
-            textEmail.setText("Email  : ");
-            return rootView;
-        }
-    }
-
-    /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        FragmentGraph fragmentGraph = new FragmentGraph();
+        FragmentBluetooth fragmentBluetooth = new FragmentBluetooth();
+        FragmentNews fragmentNews = new FragmentNews();
+        FragmentContact fragmentContact = new FragmentContact();
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -129,9 +104,18 @@ public class MainGraph extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case PAGE_GRAPH :
+                    return fragmentGraph;
+                case PAGE_BLUETOOTH :
+                    return fragmentBluetooth;
+                case PAGE_NEWS :
+                    return fragmentNews;
+                case PAGE_CONTACT :
+                    return fragmentContact;
+                default:
+                    return fragmentGraph;
+            }
         }
 
         @Override

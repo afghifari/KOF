@@ -9,4 +9,8 @@
     <color name="bluesky1">#69c1f7</color>
     <color name="darkblue">#2d5b87</color>
     <color name="halfblue">#54a3e0</color>
+
+    <color name="darkblack">#585859</color>
+    <color name="darkblack2">#98999b</color>
+    <color name="white_pollar">#ffffff</color>
 </resources>
