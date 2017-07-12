@@ -91,8 +91,9 @@ public class FragmentContact extends Fragment{
                     if (toast != null) {
                         toast.cancel();
                     }
-                    String message = "posisi : " + Integer.toString(posisi);
+                    String message;
                     if (posisi == 0) {
+                        message = "Call the Lab";
                         toast = Toast.makeText(FragmentContact.this.getActivity(), message, Toast.LENGTH_LONG);
                         toast.show();
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -100,6 +101,7 @@ public class FragmentContact extends Fragment{
                         startActivity(callIntent);
 
                     } else {
+                        message = "Open Email Menu";
                         toast = Toast.makeText(FragmentContact.this.getActivity(), message, Toast.LENGTH_LONG);
                         toast.show();
                          /* Create the Intent */
