@@ -10,4 +10,9 @@
     <string name="ika_email">ikakurniawati_x6@yahoo.com</string>
 
     <string name="jumlah_contact">2</string>
+
+    <string name="search">Search</string>
+    <string name="listbluetooth">List Bluetooth</string>
+    <string name="tap_search">Tap search button to find Bluetooth device</string>
+    <string name="tap_connect">Tap bluetooth list to connect</string>
 </resources>

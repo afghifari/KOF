@@ -9,9 +9,11 @@
     <dimen name="padding_below_line">8dp</dimen>
 
     <dimen name="standard_text_size">16sp</dimen>
+    <dimen name="tittle_text_size">18sp</dimen>
 
     <dimen name="margin_top">16dp</dimen>
     <dimen name="margin_top_2">20dp</dimen>
     <dimen name="margin_left">20dp</dimen>
     <dimen name="margin_left_2">70dp</dimen>
+    <dimen name="margin_bottom">60dp</dimen>
 </resources>
