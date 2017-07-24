@@ -5,12 +5,17 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--primary color-->
+    <color name="bluesky0">#d9ebfb</color>
     <color name="bluesky">#a0cdf5</color>
     <color name="bluesky1">#69c1f7</color>
+    <color name="blueblack">#212f3d</color>
     <color name="darkblue">#2d5b87</color>
     <color name="halfblue">#54a3e0</color>
 
     <color name="darkblack">#585859</color>
     <color name="darkblack2">#98999b</color>
     <color name="white_pollar">#ffffff</color>
+
+    <color name="orange"> #e67e22 </color>
+    <color name="pink"> #f31261 </color>
 </resources>

@@ -2,41 +2,171 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/halfblue"
     tools:context="com.ika.kof.MainActivity">
 
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph"
+    <LinearLayout
+        android:id="@+id/layoutgraph"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-         />
-
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/graph"
-        android:text="augustus"
-        android:textSize="20sp"/>
+        android:background="@color/orange">
 
-    <TextView
-        android:id="@+id/email_section"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/section_label"
-        android:text="2017"
-        android:textSize="20sp"/>
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/bluesky0"
+            />
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph2"
-        android:layout_below="@id/email_section"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/section_label1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:textColor="#fffff2"
+                android:background="@color/orange"
+                android:text="month"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutgraph"
+        android:background="@color/halfblue">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/freqtodaytext"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freq_today"
+                        android:textColor="@color/white_pollar"
+                        android:textSize="@dimen/standard_text_size"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/date_today_text"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="20 Juli 2017"
+                        android:textColor="@color/white_pollar"
+                        android:textSize="@dimen/standard_text_size"
+                        />
+
+                    <TextView
+                        android:id="@+id/freqtoday_number"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="99"
+                        android:textSize="@dimen/big_text_size"
+                        android:textStyle="bold"
+                        android:textColor="@color/white_pollar"
+                        />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/white_pollar" />
+
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/freqhighesttext"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freq_highest"
+                        android:textColor="@color/white_pollar"
+                        android:textSize="@dimen/standard_text_size"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/date_highest_text"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="20 Juli 2017"
+                        android:textColor="@color/white_pollar"
+                        android:textSize="@dimen/standard_text_size"
+                        />
+
+                    <TextView
+                        android:id="@+id/freqhighest_number"
+                        android:gravity="center_horizontal|center_vertical|center"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="99"
+                        android:textSize="@dimen/big_text_size"
+                        android:textStyle="bold"
+                        android:textColor="@color/white_pollar"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 
 
 

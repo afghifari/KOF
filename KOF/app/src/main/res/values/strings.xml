@@ -13,6 +13,14 @@
 
     <string name="search">Search</string>
     <string name="listbluetooth">List Bluetooth</string>
+    <string name="status_blute">Bluetooth Status</string>
     <string name="tap_search">Tap search button to find Bluetooth device</string>
     <string name="tap_connect">Tap bluetooth list to connect</string>
+    <string name="available_device">Available device</string>
+    <string name="paired_device">Paired device</string>
+    <string name="warning_blute">Your bluetooth is off. Please switch on your bluetooth.</string>
+    <string name="please_blute">Please switch on your bluetooth</string>
+
+    <string name="freq_today">Frequency Today</string>
+    <string name="freq_highest">Highest Frequency</string>
 </resources>

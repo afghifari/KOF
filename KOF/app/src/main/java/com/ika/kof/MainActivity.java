@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    TabLayout tabLayout;
 
     private static final int PAGE_GRAPH = 0;
     private static final int PAGE_BLUETOOTH = 1;
@@ -59,8 +60,12 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.graph);
+        tabLayout.getTabAt(1).setIcon(R.drawable.bluetooth1600);
+        tabLayout.getTabAt(2).setIcon(R.drawable.news);
+        tabLayout.getTabAt(3).setIcon(R.drawable.contact);
 
     }
 
@@ -127,16 +132,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
-                    return "Graph";
-                case 1:
-                    return "Bluetooth";
-                case 2:
-                    return "News & Articles";
-                case 3:
-                    return "Contact The Lab";
+                default:
+                    return "";
             }
-            return null;
         }
     }
 }
