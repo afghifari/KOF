@@ -23,4 +23,6 @@
 
     <string name="freq_today">Frequency Today</string>
     <string name="freq_highest">Highest Frequency</string>
+
+    <string name="this_app">com.ika.kof.killerofflue</string>
 </resources>

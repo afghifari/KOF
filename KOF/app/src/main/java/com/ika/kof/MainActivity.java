@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PAGE_NEWS = 2;
     private static final int PAGE_CONTACT = 3;
 
+    private String tabGraph;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,5 +138,13 @@ public class MainActivity extends AppCompatActivity {
                     return "";
             }
         }
+    }
+
+    public void setTabGraph(String a) {
+        tabGraph = a;
+    }
+
+    public String getTabGraph() {
+        return tabGraph;
     }
 }

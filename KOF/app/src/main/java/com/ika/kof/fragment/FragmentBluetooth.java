@@ -8,7 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,12 +29,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ika.kof.Database.DataGraphic;
+import com.ika.kof.MainActivity;
 import com.ika.kof.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Set;
 import java.util.UUID;
 
@@ -52,6 +56,12 @@ public class FragmentBluetooth extends Fragment {
     private ArrayAdapter mAdapterPair;
     private Handler bluetoothIn;
 
+    private FragmentGraph fragmentGraph;
+
+    private String tabGraph;
+    private String TabOfFragmentGraph;
+    private final String currentDate = "currenttime";
+    private final String sumpress = "sumpress";
     private String address = "";
     private int handlerState = 1;
     private boolean isBtConnected = false;
@@ -70,8 +80,14 @@ public class FragmentBluetooth extends Fragment {
     private TextView bluetoothTextInfo;
     private ProgressBar spinner;
 
+    private DataGraphic dataGraphic;
+
     //SPP UUID. Look for it
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    public FragmentBluetooth() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -150,6 +166,14 @@ public class FragmentBluetooth extends Fragment {
         spinner = (ProgressBar) rootView.findViewById(R.id.progressbar);
         spinner.setVisibility(View.GONE);
 
+        TabOfFragmentGraph = ((MainActivity)getActivity()).getTabGraph();
+        fragmentGraph = (FragmentGraph)getActivity()
+                .getSupportFragmentManager()
+                .findFragmentByTag(TabOfFragmentGraph);
+
+        ((MainActivity)getActivity()).setTabGraph(tabGraph);
+        dataGraphic = new DataGraphic(FragmentBluetooth.this.getActivity());
+
         // Register the BroadcastReceiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -158,7 +182,6 @@ public class FragmentBluetooth extends Fragment {
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 
         getActivity().registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
-
     }
 
     private void showWarning(boolean status) {
@@ -196,10 +219,16 @@ public class FragmentBluetooth extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if (myBluetooth.isEnabled())
-                    searchNearestBluetooth();
-                else
-                    toastMsg(getResources().getString(R.string.please_blute));
+
+                Handler bluteHandler = new Handler();
+                bluteHandler.post(handlerBluetooth);
+
+                bluetoothInputHandler();
+
+//                if (myBluetooth.isEnabled())
+//                    searchNearestBluetooth();
+//                else
+//                    toastMsg(getResources().getString(R.string.please_blute));
             }
         });
 
@@ -246,20 +275,74 @@ public class FragmentBluetooth extends Fragment {
         myBluetooth.startDiscovery();
     }
 
+    private String getDateString() {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String currentTime = df.format(c.getTime());
+
+        return currentTime;
+    }
+
+    private void bluetoothInputHandler() {
+        Context context = getActivity();
+        SharedPreferences mPrefs;
+        mPrefs = context.getSharedPreferences(getString(R.string.this_app), Context.MODE_PRIVATE);
+
+        String date = mPrefs.getString(currentDate,null);
+        int integerSumPress = mPrefs.getInt(sumpress,0);
+        String currentTime = getDateString();
+
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+
+        if (date == null) {
+            Log.d("date: ","null");
+
+            prefsEditor.putString(currentDate,getDateString());
+            prefsEditor.putInt(sumpress,1);
+
+        } else if (date != null && date.contentEquals(currentTime)) {
+            Log.d("date: ","date!=null & = curentime");
+
+            integerSumPress++;
+            prefsEditor.putInt(sumpress,integerSumPress);
+
+            Log.d("1myDate : ",date);
+            Log.d("1integersumpress : ",integerSumPress + "");
+
+        } else if (date != null && !date.contentEquals(currentTime) ){
+            Log.d("date: ","date!=null & != curentime");
+            //TODO simpan ke database sqlite
+
+            boolean insertData = dataGraphic.addData(date,Integer.toString(integerSumPress));
+
+            if (insertData) {
+                Log.i("Database :","inserted succesfully");
+            } else {
+                Log.i("Database :","failed to insert data");
+            }
+
+            Log.d("2myDate : ",date);
+            Log.d("2integersumpress : ",integerSumPress + "");
+//                    Handler bluteHandler = new Handler();
+//                    bluteHandler.post(handlerBluetooth);
+
+        }
+
+        prefsEditor.commit();
+    }
+
     public void startBluetooth() {
         new ConnectBT().execute(); //Call the class to connect
 
         bluetoothIn = new Handler() {
             public void handleMessage(android.os.Message msg) {
-//                SharedPreferences mPrefs;
-//                mPrefs = getSharedPreferences("geloman", Context.MODE_PRIVATE);
-//                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                bluetoothInputHandler();
+
                 String readMessage = (String) msg.obj;// msg.arg1 = bytes from connect thread
 
                 bluetoothTextInfo.setText(readMessage);
                 Log.d("pesannya : ",readMessage);
                 toastMsg(readMessage);
-
 
             }
         };
@@ -434,4 +517,19 @@ public class FragmentBluetooth extends Fragment {
             }
         }
     }
+
+    int x = 3;
+    int y = 5;
+
+    Runnable handlerBluetooth = new Runnable() {
+        @Override
+        public void run() {
+
+            Log.d("tes : ", x + "," + y);
+            fragmentGraph.addDataGraph(x,y);
+            x++;
+            y++;
+        }
+    };
+
 }
