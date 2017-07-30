@@ -1,29 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
-    <ImageView
-        android:id="@+id/logo_phone"
-        android:layout_marginTop="@dimen/margin_top"
-        android:layout_marginBottom="@dimen/margin_top"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_phone_black_24dp"/>
-
-    <TextView
-        android:id="@+id/text_phone"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/margin_top_2"
-        android:layout_marginBottom="@dimen/margin_top"
-        android:layout_marginLeft="@dimen/margin_left_2"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ika_phone"
-        android:fontFamily="sans-serif"
-        android:textSize="@dimen/standard_text_size"/>
+        android:layout_marginTop="@dimen/ukuran_3dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/blueskyNom"
+        app:cardCornerRadius="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPaddingBottom="8dp"
+        app:contentPaddingLeft="14dp"
+        app:contentPaddingRight="14dp"
+        app:contentPaddingTop="14dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo_phone"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_phone_black_24dp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_left_3"
+                    android:text="@string/telepon_laboratory"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/tittle_text_size"
+                    android:textColor="@color/warnateksjudul"
+                    />
+
+                <TextView
+                    android:id="@+id/text_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top0"
+                    android:layout_marginBottom="@dimen/margin_top"
+                    android:layout_marginLeft="@dimen/margin_left_3"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ika_phone"
+                    android:fontFamily="sans-serif"
+                    android:textSize="@dimen/standard_text_size"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

@@ -19,6 +19,27 @@
     <dimen name="margin_top_3">12dp</dimen>
     <dimen name="margin_left">20dp</dimen>
     <dimen name="margin_left_2">70dp</dimen>
+    <dimen name="margin_left_3">10dp</dimen>
     <dimen name="margin_righ">20dp</dimen>
     <dimen name="margin_bottom">55dp</dimen>
+    <dimen name="margin_bottom_2">2dp</dimen>
+
+    <dimen name="ukuran_2dp">2dp</dimen>
+    <dimen name="ukuran_3dp">3dp</dimen>
+    <dimen name="ukuran_4dp">4dp</dimen>
+
+    <!--UKURAN TEKS-->
+    <dimen name="ukuran13sp">13sp</dimen>
+    <dimen name="ukuran14sp">14sp</dimen>
+    <dimen name="ukuran15sp">15sp</dimen>
+    <dimen name="ukuran16sp">16sp</dimen>
+    <dimen name="ukuran18sp">18sp</dimen>
+    <dimen name="ukuran20sp">20sp</dimen>
+    <dimen name="ukuran25sp">25sp</dimen>
+    <dimen name="ukuran28sp">28sp</dimen>
+
+    <dimen name="paddingtombol">5dp</dimen>
+    <dimen name="paddingtop">3dp</dimen>
+    <dimen name="tebalgaris2">0dp</dimen>
+
 </resources>

@@ -4,7 +4,19 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!--cp abuabu2 adalah warna untuk ikon action bar toolbar-->
+    <color name="cp_hijau">#21af95</color>
+    <color name="cp_hijau2">#1fbba6</color>
+    <color name="cp_merah">#f16767</color>
+    <color name="cp_putih">#eaeaea</color>
+    <color name="cp_abuabu">#B0BEC5</color>
+    <color name="cp_abuabu2">#90A4AE</color>
+    <color name="cp_abuabuteks">#999999</color>
+
+    <color name="cp_warnatoolbargelap">#222222</color>
+
     <!--primary color-->
+    <color name="blueskyNom">#f5ffff</color>
     <color name="bluesky0">#d9ebfb</color>
     <color name="bluesky">#a0cdf5</color>
     <color name="bluesky1">#69c1f7</color>
@@ -18,4 +30,13 @@
 
     <color name="orange"> #e67e22 </color>
     <color name="pink"> #f31261 </color>
+
+    <!-- TEMA BARU ALA GOOGLE NOW -->
+    <!-- latar belakang -->
+    <color name="abubgnow">#ededed</color>
+    <color name="putih">#ffffff</color>
+    <color name="putihabu">#f2f2f2</color>
+    <color name="transparan">#00000000</color>
+    <color name="abubayangan">#dbdbdb</color>
+    <color name="abubgkrem">#f2f0e8</color>
 </resources>

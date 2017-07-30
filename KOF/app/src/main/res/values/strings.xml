@@ -4,7 +4,9 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="telepon">Phone</string>
+    <string name="telepon_laboratory">Laboratory Phone</string>
     <string name="email">Email</string>
+    <string name="email_laboratory">Laboratory Email</string>
 
     <string name="ika_phone">085321230866</string>
     <string name="ika_email">ikakurniawati_x6@yahoo.com</string>
@@ -25,6 +27,16 @@
 
     <string name="freq_today">Frequency Today</string>
     <string name="freq_highest">Highest Frequency</string>
+
+    <!-- WARNATEKS -->
+    <color name="warnateksjudul">#555555</color>
+    <color name="warnatekssubjudul">#777777</color>
+
+    <string name="detil_webview">Detil Webview</string>
+    <string name="detil_artikel">Article</string>
+
+    <string name="action_bagikan">Share Article</string>
+    <string name="action_segarkan">Refresh Data</string>
 
     <string name="this_app">com.ika.kof.killerofflue</string>
 </resources>

@@ -50,37 +50,37 @@ public class FragmentContact extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("VIEW CREATED", "FRAGMENT onViewCreated");
+        Log.d("VIEW Contact", "FRAGMENT onViewCreated");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("START", "FRAGMENT onStart");
+        Log.d("START CONTACT", "FRAGMENT onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("RESUME", "FRAGMENT onResume");
+        Log.d("RESUME CONTACT", "FRAGMENT onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("PAUSE", "FRAGMENT onPause");
+        Log.d("PAUSE CONTACT", "FRAGMENT onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d("STOP", "FRAGMENT onStop");
+        Log.d("STOP CONTACT", "FRAGMENT onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("DESTROY VIEW", "FRAGMENT onDestroyView");
+        Log.d("DESTROY VIEW CONTACT", "FRAGMENT onDestroyView");
     }
 
     private void inisialisasiListener() {

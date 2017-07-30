@@ -80,6 +80,7 @@ public class FragmentGraph extends Fragment {
     }
 
     private void inisialisasiTampilan() {
+        makeNewGraph();
         loadGraphFromMonthYearNow();
     }
 
@@ -103,7 +104,6 @@ public class FragmentGraph extends Fragment {
     }
 
     private void loadGraphFromMonthYearNow() {
-        makeNewGraph();
         Context context = getActivity();
         SharedPreferences mPrefs;
         mPrefs = context.getSharedPreferences(getString(R.string.this_app), Context.MODE_PRIVATE);
@@ -116,7 +116,6 @@ public class FragmentGraph extends Fragment {
 
         try {
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-            Date myDate = df.parse(date);
 
             /*
             Kondisi
@@ -125,10 +124,12 @@ public class FragmentGraph extends Fragment {
          */
             if (!isInsertedBoolean && date != null) {
                 Log.d("kondisi1:","enter");
+                Date myDate = df.parse(date);
                 showToast(myDate.toString());
                 addDataGraph(myDate,integerSumPress);
             } else if (isInsertedBoolean && date != null) {
                 Log.d("kondisi2:","enter");
+                Date myDate = df.parse(date);
                 loadGraph();
 
                 String currentTime = getDateString();
@@ -146,13 +147,21 @@ public class FragmentGraph extends Fragment {
     }
 
     public void loadGraph() {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Date myDate;
         Cursor cursor = dataGraphic.getDataFromMonthYearNow();
         Log.d("kondisi2a:","enter");
         while (cursor.moveToNext()) {
             Log.d("kondisi2b:","enter");
-            addDataGraphWithoutMakeNewGraph(cursor.getInt(0), cursor.getInt(1));
-            Log.d("1dataku:",cursor.getInt(0)+"");
-            Log.d("2dataku:",cursor.getInt(1)+"");
+            try {
+                myDate = df.parse(cursor.getString(1));
+                addDataGraphWithoutMakeNewGraph(myDate, cursor.getInt(2));
+                Log.d("1dataku:",myDate+"");
+                Log.d("2dataku:",cursor.getInt(1)+"");
+            } catch (Exception e) {
+                Log.e("error on :","loadGraph");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -166,9 +175,13 @@ public class FragmentGraph extends Fragment {
 
         Calendar calendar = Calendar.getInstance();
         Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 6);
+        calendar.add(Calendar.DATE, 5);
         Date d2 = calendar.getTime();
 
+        // set manual Y bounds
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(10);
 
         // set manual X bounds
         graph.getViewport().setXAxisBoundsManual(true);
@@ -177,32 +190,32 @@ public class FragmentGraph extends Fragment {
 
         // enable scalling
         graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
 
         graph.addSeries(series);
         graph.addSeries(series2);
 
         // set date label formatter
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM");
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity(),dateFormat));
     }
 
-    public void addDataGraphWithoutMakeNewGraph(int x, int y) {
-        series.appendData(new DataPoint(x,y),true,50,false);
-        series2.appendData(new DataPoint(x,y),true,50,false);
+    public void addDataGraphWithoutMakeNewGraph(Date x, int y) {
+        series.appendData(new DataPoint(x,y),true,10,false);
+        series2.appendData(new DataPoint(x,y),true,10,false);
 
-        graph.addSeries(series);
-        graph.addSeries(series2);
+//        graph.addSeries(series);
+//        graph.addSeries(series2);
     }
 
     public void addDataGraph(Date x, int y) {
-        makeNewGraph();
         loadGraph();
 
-        series.appendData(new DataPoint(x,y),true,50,false);
-        series2.appendData(new DataPoint(x,y),true,50,false);
+        series.appendData(new DataPoint(x,y),true,10,false);
+        series2.appendData(new DataPoint(x,y),true,10,false);
 
-        graph.addSeries(series);
-        graph.addSeries(series2);
+//        graph.addSeries(series);
+//        graph.addSeries(series2);
         showToast("dataReceived : "+"("+x+","+y+")");
     }
 
