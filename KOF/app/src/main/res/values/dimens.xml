@@ -27,6 +27,7 @@
     <dimen name="ukuran_2dp">2dp</dimen>
     <dimen name="ukuran_3dp">3dp</dimen>
     <dimen name="ukuran_4dp">4dp</dimen>
+    <dimen name="ukuran_10dp">10dp</dimen>
 
     <!--UKURAN TEKS-->
     <dimen name="ukuran13sp">13sp</dimen>

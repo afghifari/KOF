@@ -3,6 +3,7 @@ package com.ika.kof.Aktifitas;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.ActionBar;
@@ -63,6 +64,8 @@ public class WebviewDetil extends AppCompatActivity {
         aksibar.setDisplayHomeAsUpEnabled(true);
         aksibar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
         aksibar.setTitle(R.string.detil_artikel);
+
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.bluesky1)));
 
         cekKoneksiInternet();
 

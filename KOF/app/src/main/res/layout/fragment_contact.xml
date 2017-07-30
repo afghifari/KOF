@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:background="@color/bluesky0"
+    android:padding="@dimen/ukuran_10dp"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView

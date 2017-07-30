@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    TabLayout tabLayout;
+    private TabLayout tabLayout;
+    private Toolbar toolbar;
 
     private static final int PAGE_GRAPH = 0;
     private static final int PAGE_BLUETOOTH = 1;
@@ -53,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.blueskyNom));
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.news);
         tabLayout.getTabAt(3).setIcon(R.drawable.contact);
 
+        inisialisasiListener();
     }
 
 
@@ -95,6 +100,45 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void inisialisasiListener() {
+        DetailOnPageChangeListener pageListener = new DetailOnPageChangeListener();
+        mViewPager.setOnPageChangeListener(pageListener);
+    }
+
+    /**
+     * Get the current view position from the ViewPager by
+     * extending SimpleOnPageChangeListener class and adding your method
+     */
+    public class DetailOnPageChangeListener extends ViewPager.SimpleOnPageChangeListener {
+
+        private int currentPage;
+
+        @Override
+        public void onPageSelected(int position) {
+            int page = position;
+            Log.d("pageeee : ",page + "");
+            switch (page) {
+                case 0:
+                    toolbar.setTitle("Graph");
+                    break;
+                case 1:
+                    toolbar.setTitle("Bluetooth");
+                    break;
+                case 2:
+                    toolbar.setTitle("Article & News");
+                    break;
+                case 3:
+                    toolbar.setTitle("Laboratory Contact");
+                    break;
+            }
+            currentPage = position;
+        }
+
+        public final int getCurrentPage() {
+            return currentPage;
+        }
     }
 
     /**
