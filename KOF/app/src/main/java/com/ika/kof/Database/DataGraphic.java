@@ -2,15 +2,18 @@ package com.ika.kof.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import org.joda.time.LocalDateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
  * Created and edited by Alhudaghifari on 7/25/2017.
- * with source code from Gulajava Ministudio.
  */
 
 public class DataGraphic extends SQLiteOpenHelper {
@@ -31,9 +34,10 @@ public class DataGraphic extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         inisialisasiDataAwal();
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-               DATE + " TEXT, " + SUMPRESS + " INTEGER)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+               DATE + " DATE, " + SUMPRESS + " INTEGER)";
         db.execSQL(createTable);
+        Log.i("Database : ","created");
     }
 
     @Override
@@ -49,13 +53,50 @@ public class DataGraphic extends SQLiteOpenHelper {
 
     public void checkToday() {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         currentTime = df.format(c.getTime());
     }
 
-    //todo catatan : pas oncreate di fragmentgraph cek apakah sudah pernah menyimpan databas apa belum
-    //todo, caranya adalah dengan membuat lagi boolean dalam sharedpreference yang berisi dia true jika sudah menyimpan
-    // todo, null jika belum menyimpan
+    /**
+     * Returns all the data from database
+     * @return
+     */
+    public Cursor getData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getDataFromMonthYear(String time) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " +
+                "STRFTIME('%d', " + DATE + ")" + ", " + SUMPRESS +
+                " FROM " + TABLE_NAME +
+                "WHERE STRFTIME('%M-%Y', " + DATE + ") = " + time;
+        Cursor data = db.rawQuery(query, null);
+
+        return data;
+    }
+
+    public Cursor getDataFromMonthYearNow() {
+        LocalDateTime now = LocalDateTime.now();
+        String time = "'" + now.getYear() + "-" + now.getMonthOfYear() + "'";
+
+        Log.w("time : ",time + "");
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select * from " + TABLE_NAME + " order by " + ID + " asc";
+//                "SELECT " +
+//                "STRFTIME('%d', " + DATE + ")" + ", " + SUMPRESS +
+//                " FROM " + TABLE_NAME +
+//                " WHERE STRFTIME('%y-%M', " + DATE + ") = " + time +
+//                " ORDER BY " + ID + " ASC";
+        Log.w("query:",query);
+        Cursor data = db.rawQuery(query, null);
+        Log.d("getDataGraphic:","enter");
+        return data;
+    }
 
     public boolean addData(String datevalue, String sumpress) {
         SQLiteDatabase db = this.getWritableDatabase();

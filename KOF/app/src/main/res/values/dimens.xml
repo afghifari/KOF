@@ -13,6 +13,7 @@
     <dimen name="tittle_text_size">18sp</dimen>
     <dimen name="big_text_size">60sp</dimen>
 
+    <dimen name="margin_top0">5dp</dimen>
     <dimen name="margin_top">16dp</dimen>
     <dimen name="margin_top_2">20dp</dimen>
     <dimen name="margin_top_3">12dp</dimen>

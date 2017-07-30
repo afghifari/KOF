@@ -20,6 +20,8 @@
     <string name="paired_device">Paired device</string>
     <string name="warning_blute">Your bluetooth is off. Please switch on your bluetooth.</string>
     <string name="please_blute">Please switch on your bluetooth</string>
+    <string name="sum_press">Count</string>
+    <string name="day">Day</string>
 
     <string name="freq_today">Frequency Today</string>
     <string name="freq_highest">Highest Frequency</string>

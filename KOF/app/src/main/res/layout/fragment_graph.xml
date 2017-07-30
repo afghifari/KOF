@@ -13,27 +13,59 @@
         android:layout_height="wrap_content"
         android:background="@color/orange">
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/bluesky0"
-            />
+            android:layout_height="wrap_content"
+            android:background="@color/bluesky0">
+
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/bluesky0"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/margin_top0"
+            android:paddingBottom="@dimen/margin_top0"
+            android:text="@string/day"
+            android:gravity="center_horizontal"
+            android:background="@color/bluesky0"/>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
             <Button
-                android:id="@+id/section_label1"
+                android:id="@+id/button_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|center_vertical"
                 android:textColor="#fffff2"
                 android:background="@color/orange"
                 android:text="month"
-                android:textSize="20sp"/>
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/button_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:textColor="#fffff2"
+                android:background="@color/orange"
+                android:text="2017"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
