@@ -35,8 +35,8 @@ public class FragmentContact extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
         View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+        Log.d("FragmentContact", " onCreateView");
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_numbers);
 
@@ -50,37 +50,37 @@ public class FragmentContact extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("VIEW Contact", "FRAGMENT onViewCreated");
+        Log.d("FragmentContact", " onViewCreated");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("START CONTACT", "FRAGMENT onStart");
+        Log.d("FragmentContact", " onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("RESUME CONTACT", "FRAGMENT onResume");
+        Log.d("FragmentContact", " onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("PAUSE CONTACT", "FRAGMENT onPause");
+        Log.d("FragmentContact", " onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d("STOP CONTACT", "FRAGMENT onStop");
+        Log.d("FragmentContact", " onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("DESTROY VIEW CONTACT", "FRAGMENT onDestroyView");
+        Log.d("FragmentContact", " onDestroyView");
     }
 
     private void inisialisasiListener() {

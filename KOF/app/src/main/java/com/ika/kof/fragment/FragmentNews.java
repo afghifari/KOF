@@ -43,6 +43,8 @@ public class FragmentNews extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        Log.d("FragmentNews", "onCreateView");
+
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_numbers);
 
@@ -57,37 +59,37 @@ public class FragmentNews extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("VIEW NEWS", "FRAGMENT onViewCreated");
+        Log.d("FragmentNews", " onViewCreated");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("START NEWS", "FRAGMENT onStart");
+        Log.d("FragmentNews", " onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("RESUME NEWS", "FRAGMENT onResume");
+        Log.d("FragmentNews", " onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("PAUSE NEWS", "FRAGMENT onPause");
+        Log.d("FragmentNews", " onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d("STOP NEWS", "FRAGMENT onStop");
+        Log.d("FragmentNews", " onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("DESTROY VIEW NEWS", "FRAGMENT onDestroyView");
+        Log.d("FragmentNews", " onDestroyView");
     }
 
     private void inisialisasiListener() {

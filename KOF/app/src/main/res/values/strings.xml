@@ -25,6 +25,9 @@
     <string name="sum_press">Count</string>
     <string name="day">Day</string>
 
+    <string name="notif_message1">Your filter is over used !</string>
+    <string name="notif_message2">Please change your filter</string>
+
     <string name="freq_today">Frequency Today</string>
     <string name="freq_highest">Highest Frequency</string>
 

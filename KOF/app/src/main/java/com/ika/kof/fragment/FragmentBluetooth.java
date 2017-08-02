@@ -1,5 +1,7 @@
 package com.ika.kof.fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,8 +72,10 @@ public class FragmentBluetooth extends Fragment {
     private String TabOfFragmentGraph;
 
     private String date;
+    private String highestFrequencyDate;
     private int integerSumPress;
     private int totCounter;
+    private int highestFrequency;
     private boolean isInsertedBoolean;
 
     private String address = "";
@@ -104,6 +109,7 @@ public class FragmentBluetooth extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bluetooth, container, false);
+        Log.w("FragmentBluetooth", " onCreateView");
 
         inisialisasiDataAwal(rootView);
 
@@ -118,38 +124,38 @@ public class FragmentBluetooth extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.w("VIEW CREATED", "FRAGMENT onViewCreated");
+        Log.w("FragmentBluetooth", " onViewCreated");
         pairedDevicesList();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.w("START", "FRAGMENT onStart");
+        Log.w("FragmentBluetooth", " onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.w("RESUME", "FRAGMENT onResume");
+        Log.w("FragmentBluetooth", " onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.w("PAUSE", "FRAGMENT onPause");
+        Log.w("FragmentBluetooth", " onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.w("STOP", "FRAGMENT onStop");
+        Log.w("FragmentBluetooth", " onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.w("DESTROY VIEW1", "FRAGMENT onDestroyView");
+        Log.w("FragmentBluetooth", " onDestroyView");
 
         if (myBluetooth.isDiscovering()) {
             Log.d("destroyview : ", "cancelDiscoveryBt");
@@ -161,7 +167,7 @@ public class FragmentBluetooth extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.w("DESTROY1", "FRAGMENT onDestroy");
+        Log.w("FragmentBluetooth", " onDestroy");
         getActivity().unregisterReceiver(mReceiver);
     }
 
@@ -303,24 +309,35 @@ public class FragmentBluetooth extends Fragment {
         mPrefs = context.getSharedPreferences(getString(R.string.this_app), Context.MODE_PRIVATE);
 
         date = mPrefs.getString(Constant.currentDate,null);
+        highestFrequencyDate = mPrefs.getString(Constant.highestFrequencyDate,null);
         integerSumPress = mPrefs.getInt(Constant.sumpress,0);
         totCounter = mPrefs.getInt(Constant.totalCounter,0);
+        highestFrequency = mPrefs.getInt(Constant.highestFrequency,0);
         isInsertedBoolean = mPrefs.getBoolean(Constant.isInsertedToDatabase,false);
 
         String currentTime = getDateString();
 
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
 
+        /*
+            kondisi :
+            1. user baru memakai aplikasi (data masih kosong)
+            2. tanggal terakhir di sharedPref sama dengan tanggal hari ini
+            3. tanggal terakhir di sharedPref tidak sama dengan tanggal hari ini
+         */
         if (date == null) {
             integerSumPress++;
             totCounter++;
+            highestFrequency++;
 
             Log.d("date: ","integersumpres : " + integerSumPress);
             Log.d("date: ","totCounter : " + totCounter);
 
             prefsEditor.putString(Constant.currentDate,getDateString());
+            prefsEditor.putString(Constant.highestFrequencyDate,getDateString());
             prefsEditor.putInt(Constant.sumpress,integerSumPress);
             prefsEditor.putInt(Constant.totalCounter,totCounter);
+            prefsEditor.putInt(Constant.highestFrequency,highestFrequency);
 
         } else if (date != null && date.contentEquals(currentTime)) {
             Log.d("date: ","date!=null & = curentime");
@@ -358,11 +375,36 @@ public class FragmentBluetooth extends Fragment {
             Log.d("2integersumpress : ",integerSumPress + "");
 //                    Handler bluteHandler = new Handler();
 //                    bluteHandler.post(handlerBluetooth);
+        }
 
+        // show notification when button pressed 161x times
+        if (totCounter == 161) {
+            Intent intent = new Intent(this.getActivity(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this.getActivity(),0,intent,PendingIntent.FLAG_ONE_SHOT);
+
+            NotificationCompat.Builder notificationBuilder;
+            NotificationManager notificationManager;
+
+            notificationBuilder = new NotificationCompat.Builder(this.getActivity());
+            notificationBuilder.setContentTitle(getResources().getString(R.string.notif_message1));
+            notificationBuilder.setContentText(getResources().getString(R.string.notif_message2));
+            notificationBuilder.setAutoCancel(true);
+            notificationBuilder.setSmallIcon(R.mipmap.logo_kof);
+            notificationBuilder.setContentIntent(pendingIntent);
+
+            notificationManager = (NotificationManager) this.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(0,notificationBuilder.build());
+
+            totCounter = 0;
+            prefsEditor.putInt(Constant.totalCounter,totCounter);
         }
 
         prefsEditor.commit();
     }
+
+
 
     public void startBluetooth() {
         new ConnectBT().execute(); //Call the class to connect
@@ -558,7 +600,6 @@ public class FragmentBluetooth extends Fragment {
 
             Log.d("tes : ", now + "," + integerSumPress);
             fragmentGraph.addDataGraph(now,integerSumPress);
-
         }
     };
 

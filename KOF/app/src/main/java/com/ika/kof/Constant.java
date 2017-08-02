@@ -16,6 +16,8 @@ public class Constant {
     public static final String sumpress = "sumpress";
     public static final String isInsertedToDatabase = "insertdb";
     public static final String totalCounter = "totalcounter";
+    public static final String highestFrequency = "highestfreq";
+    public static final String highestFrequencyDate = "highestfreqdate";
 
     public static final String TAG_URL_NEWS = "urlnews";
     public static final String TAG_JUDUL_NEWS = "judulnews";

@@ -11,24 +11,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange">
+        android:background="@color/bluesky0">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bluesky0">
-
-
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/graph"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/bluesky0"
-                />
-
-        </LinearLayout>
-
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@color/bluesky0"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -39,35 +30,6 @@
             android:gravity="center_horizontal"
             android:background="@color/bluesky0"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/button_month"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
-                android:textColor="#fffff2"
-                android:background="@color/orange"
-                android:text="month"
-                android:layout_weight="1"
-                android:textSize="18sp"/>
-
-            <Button
-                android:id="@+id/button_year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
-                android:textColor="#fffff2"
-                android:background="@color/orange"
-                android:text="2017"
-                android:layout_weight="1"
-                android:textSize="18sp"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -156,7 +118,6 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/freqhighesttext"
                         android:gravity="center_horizontal|center_vertical|center"
                         android:layout_gravity="center_vertical|center_horizontal|center"
                         android:layout_width="match_parent"
