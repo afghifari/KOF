@@ -9,13 +9,9 @@ import android.util.Log;
 
 import org.joda.time.LocalDateTime;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 /**
- * Created and edited by Alhudaghifari on 7/25/2017.
+ * Created by Alhudaghifari on 7/25/2017.
  */
-
 public class DataGraphic extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "GRAPHIC";
@@ -23,17 +19,12 @@ public class DataGraphic extends SQLiteOpenHelper {
     private static final String DATE = "pointdate";
     private static final String SUMPRESS = "sumpress";
 
-    private int sumpress;
-    private boolean checktoday;
-    private String currentTime;
-
     public DataGraphic(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        inisialisasiDataAwal();
         String createTable = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                DATE + " DATE, " + SUMPRESS + " INTEGER)";
         db.execSQL(createTable);
@@ -44,17 +35,6 @@ public class DataGraphic extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
         onCreate(db);
-    }
-
-    private void inisialisasiDataAwal() {
-        sumpress = 0;
-        checktoday = false;
-    }
-
-    public void checkToday() {
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        currentTime = df.format(c.getTime());
     }
 
     /**

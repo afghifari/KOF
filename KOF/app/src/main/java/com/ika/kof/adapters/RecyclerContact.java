@@ -16,7 +16,6 @@ import com.ika.kof.R;
 /**
  * Created by Alhudaghifari on 7/11/2017.
  */
-
 public class RecyclerContact extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context mContext;

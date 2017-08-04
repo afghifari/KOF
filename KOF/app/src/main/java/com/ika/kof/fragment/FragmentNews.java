@@ -19,10 +19,8 @@ import com.ika.kof.R;
 import com.ika.kof.adapters.RecyclerNews;
 
 /**
- * Created by user on 7/6/2017.
- * error converting bytecode to dex exception parsing classes
+ * Created by Ghifari on 7/6/2017.
  */
-
 public class FragmentNews extends Fragment {
 
     RecyclerView mRecyclerView;
@@ -45,7 +43,6 @@ public class FragmentNews extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         Log.d("FragmentNews", "onCreateView");
 
-
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_numbers);
 
         inisialisasiListener();
@@ -54,7 +51,6 @@ public class FragmentNews extends Fragment {
 
         return rootView;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

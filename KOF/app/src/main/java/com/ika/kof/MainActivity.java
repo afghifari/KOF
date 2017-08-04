@@ -1,5 +1,6 @@
 package com.ika.kof;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.ika.kof.Aktifitas.AboutPage;
 import com.ika.kof.fragment.FragmentBluetooth;
 import com.ika.kof.fragment.FragmentContact;
 import com.ika.kof.fragment.FragmentGraph;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-//        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(4);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -95,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            aboutPage();
             return true;
         }
 
@@ -105,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
     public void inisialisasiListener() {
         DetailOnPageChangeListener pageListener = new DetailOnPageChangeListener();
         mViewPager.setOnPageChangeListener(pageListener);
+    }
+
+    private void aboutPage() {
+        Intent intent = new Intent(MainActivity.this, AboutPage.class);
+        MainActivity.this.startActivity(intent);
     }
 
     /**

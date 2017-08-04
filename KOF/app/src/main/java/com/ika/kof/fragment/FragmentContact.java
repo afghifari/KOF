@@ -1,9 +1,5 @@
 package com.ika.kof.fragment;
 
-/**
- * Created by Ghifari on 7/6/2017.
- */
-
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -21,6 +17,9 @@ import com.ika.kof.Constant;
 import com.ika.kof.R;
 import com.ika.kof.adapters.RecyclerContact;
 
+/**
+ * Created by Ghifari on 7/6/2017.
+ */
 public class FragmentContact extends Fragment{
 
     RecyclerView mRecyclerView;

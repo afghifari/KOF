@@ -1,8 +1,7 @@
 package com.ika.kof;
 
 /**
- * Created and edited by Alhudaghifari on 7/11/2017.
- * with source code from Gulajava Ministudio.
+ * Created by Alhudaghifari on 7/11/2017.
  */
 
 public class Constant {

@@ -37,11 +37,6 @@ import com.ika.kof.Database.DataGraphic;
 import com.ika.kof.MainActivity;
 import com.ika.kof.R;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -54,8 +49,8 @@ import java.util.UUID;
 
 /**
  * Created by Ghifari on 7/6/2017.
+ * Kelas ini berfungsi untuk mengatur tampilan dan back end di halaman bluetooth
  */
-
 public class FragmentBluetooth extends Fragment {
 
     private BluetoothAdapter myBluetooth = null;
@@ -171,7 +166,10 @@ public class FragmentBluetooth extends Fragment {
         getActivity().unregisterReceiver(mReceiver);
     }
 
-
+    /**
+     * Inisialisasi data awal diperlukan
+     * @param rootView input rootview
+     */
     public void inisialisasiDataAwal(View rootView) {
         layoutwarning = (LinearLayout) rootView.findViewById(R.id.linearwarning);
         btnSearchBluetooth = (Button) rootView.findViewById(R.id.btnSearch);
@@ -200,6 +198,11 @@ public class FragmentBluetooth extends Fragment {
         getActivity().registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
     }
 
+    /**
+     * Method ini berfungsi untuk menampilkan peringatan saat bluetooth dalam
+     * keadaan aktif / non aktif
+     * @param status input status keaktifan bluetooth
+     */
     private void showWarning(boolean status) {
         if (status) {
             layoutwarning.setVisibility(View.VISIBLE);
@@ -230,6 +233,12 @@ public class FragmentBluetooth extends Fragment {
         }
     }
 
+    /**
+     * method ini untuk inisialisasi listener yang diperlukan.
+     * berikut ada daftar listener :
+     * 1. button search
+     * 2. switch on/off bluetooth
+     */
     public void inisialisasiListener() {
         btnSearchBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,6 +275,10 @@ public class FragmentBluetooth extends Fragment {
         });
     }
 
+    /**
+     * method ini untuk menampilkan bluetooth yang telah di pairing sebelumnya
+     * ke tampilan paired device
+     */
     private void pairedDevicesList() {
         if (myBluetooth.isEnabled()) {
             pairedDevices = myBluetooth.getBondedDevices();
@@ -276,7 +289,7 @@ public class FragmentBluetooth extends Fragment {
                     mArrayListPaired.add(bt.getName() + "\n" + bt.getAddress()); //Get the device's name and the address
                 }
             } else {
-                Toast.makeText(FragmentBluetooth.this.getActivity(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(FragmentBluetooth.this.getActivity(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
             }
 
             mAdapter = new ArrayAdapter(FragmentBluetooth.this.getActivity(), android.R.layout.simple_list_item_1, mArrayListPaired);
@@ -285,12 +298,19 @@ public class FragmentBluetooth extends Fragment {
         }
     }
 
+    /**
+     * method ini berfungsi untuk mencari bluetooth aktif yang terdekat
+     */
     private void searchNearestBluetooth() {
         mArrayListSearched = new ArrayList();
         //search bluetooth
         myBluetooth.startDiscovery();
     }
 
+    /**
+     * method ini berfungsi untuk mengambil data tanggal hari ini
+     * @return tanggal hari ini dalam bentuk string, misal : 2-8-2017
+     */
     private String getDateString() {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
@@ -299,10 +319,22 @@ public class FragmentBluetooth extends Fragment {
         return currentTime;
     }
 
-    private void updateGraph() {
+    /**
+     * method ini berfungsi untuk mengambil data tanggal hari ini dengan nama bulan bentuk string
+     * @return tanggal hari ini dalam bentuk string, misal : 2-AUG-2017
+     */
+    private String getDateStringMonthLatin() {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String currentTime = df.format(c.getTime());
 
+        return currentTime;
     }
 
+    /**
+     * method ini berfungsi untuk melakukan handling penyimpanan pesan pada shared preferences
+     * method ini dipanggil ketika ada pesan bluetooth yang masuk
+     */
     private void bluetoothInputHandler() {
         Context context = getActivity();
         SharedPreferences mPrefs;
@@ -334,7 +366,7 @@ public class FragmentBluetooth extends Fragment {
             Log.d("date: ","totCounter : " + totCounter);
 
             prefsEditor.putString(Constant.currentDate,getDateString());
-            prefsEditor.putString(Constant.highestFrequencyDate,getDateString());
+            prefsEditor.putString(Constant.highestFrequencyDate,getDateStringMonthLatin());
             prefsEditor.putInt(Constant.sumpress,integerSumPress);
             prefsEditor.putInt(Constant.totalCounter,totCounter);
             prefsEditor.putInt(Constant.highestFrequency,highestFrequency);
@@ -373,12 +405,10 @@ public class FragmentBluetooth extends Fragment {
 
             Log.d("2myDate : ",date);
             Log.d("2integersumpress : ",integerSumPress + "");
-//                    Handler bluteHandler = new Handler();
-//                    bluteHandler.post(handlerBluetooth);
         }
 
         // show notification when button pressed 161x times
-        if (totCounter == 161) {
+        if (totCounter % 161 == 0) {
             Intent intent = new Intent(this.getActivity(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -396,7 +426,9 @@ public class FragmentBluetooth extends Fragment {
 
             notificationManager = (NotificationManager) this.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0,notificationBuilder.build());
+        }
 
+        if (totCounter == 32766) {
             totCounter = 0;
             prefsEditor.putInt(Constant.totalCounter,totCounter);
         }
@@ -404,24 +436,39 @@ public class FragmentBluetooth extends Fragment {
         prefsEditor.commit();
     }
 
-
-
+    /**
+     * startBluetooth adalah method untuk melakukan handling pada pesan bluetooth yang masuk
+     * jika ada pesan masuk maka bluetoothInputHandler() akan dipanggil
+     * kemudian setelah semua pesan masuk maka smartphone akan mengirimkan data berupa totCounter
+     * untuk melakukan sinkronisasi terhadap device.
+     */
     public void startBluetooth() {
         new ConnectBT().execute(); //Call the class to connect
 
         bluetoothIn = new Handler() {
             public void handleMessage(android.os.Message msg) {
-//                bluetoothInputHandler();
+                bluetoothInputHandler();
+                Handler bluteHandler = new Handler();
+                bluteHandler.post(handlerBluetooth);
 
                 String readMessage = (String) msg.obj;// msg.arg1 = bytes from connect thread
 
                 Log.d("pesannya : ",readMessage);
-                showToast(readMessage);
 
+                ConnectedThread mConnectedThread;
+                mConnectedThread = new ConnectedThread(btSocket);
+                mConnectedThread.start();
+
+                // sending total counter to synchronize with the device
+                mConnectedThread.write(totCounter + "");
             }
         };
     }
 
+    /**
+     * method ini untuk menampilkan toast agar pemanggilan lebih sederhana
+     * @param s pesan
+     */
     private void showToast(String s) {
         Toast.makeText(FragmentBluetooth.this.getActivity(),s,Toast.LENGTH_LONG).show();
     }
@@ -568,10 +615,10 @@ public class FragmentBluetooth extends Fragment {
             while (true) {
                 try {
                     String readMessage = "";
-                    bytes = mmInStream.read(buffer);            //read bytes from input buffer
+                    bytes = mmInStream.read(buffer); //read bytes from input buffer
                     readMessage = new String(buffer, 0, bytes);
                     Log.d("inipesan : ", readMessage);
-//                    bluetoothTextInfo.setText(readMessage);
+
                     // Send the obtained bytes to the UI Activity via handler
                     bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                 } catch (IOException e) {
@@ -592,6 +639,11 @@ public class FragmentBluetooth extends Fragment {
         }
     }
 
+    /**
+     * Runnable ini berfunsi untuk komunikasi dengan FragmentGraph
+     * hal yang dikomunikasikan adalah pengiriman tanggal hari ini serta
+     * banyaknya penekanan tombol yang dilakukan hari ini.
+     */
     Runnable handlerBluetooth = new Runnable() {
         @Override
         public void run() {

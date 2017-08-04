@@ -24,7 +24,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/margin_top0"
             android:paddingBottom="@dimen/margin_top0"
             android:text="@string/day"
             android:gravity="center_horizontal"
@@ -40,6 +39,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/layoutgraph"
         android:background="@color/halfblue">
+
+        <TextView
+            android:id="@+id/total_count_number"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_4"
+            android:textColor="@color/white_pollar"
+            android:textSize="@dimen/standard_text_size"
+            android:textStyle="bold"
+            android:text="@string/total_count"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -98,12 +108,12 @@
             </RelativeLayout>
 
             <View
-            android:layout_marginTop="@dimen/margin_top"
-            android:layout_marginBottom="@dimen/margin_bottom"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/white_pollar" />
+                android:layout_marginTop="@dimen/margin_top"
+                android:layout_marginBottom="@dimen/margin_bottom"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white_pollar" />
 
             <RelativeLayout
                 android:orientation="vertical"
@@ -159,8 +169,6 @@
 
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

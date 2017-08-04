@@ -44,6 +44,13 @@
             android:label="@string/detil_webview">
         </activity>
 
+        <activity
+            android:name=".Aktifitas.AboutPage"
+            android:label="@string/about_page"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="4dp"
+        android:layout_marginLeft="@dimen/ukuran_10dp"
+        android:layout_marginRight="@dimen/ukuran_10dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/blueskyNom"
         app:cardCornerRadius="0dp"
