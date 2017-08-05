@@ -109,7 +109,7 @@ public class FragmentContact extends Fragment{
                         /* Fill it with Data */
                         emailIntent.setType("text/plain");
                         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Constant.ika_email});
-                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Konsultasi Kesehatan");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.medical_checkup));
                         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "");
 
                         /* Send it off to the Activity-Chooser */

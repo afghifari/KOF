@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ika.kof.Aktifitas.AboutPage;
+import com.ika.kof.Aktifitas.SettingPage;
 import com.ika.kof.fragment.FragmentBluetooth;
 import com.ika.kof.fragment.FragmentContact;
 import com.ika.kof.fragment.FragmentGraph;
@@ -100,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_about) {
             aboutPage();
             return true;
+        } else if (id == R.id.action_setting){
+            settingPage();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -112,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void aboutPage() {
         Intent intent = new Intent(MainActivity.this, AboutPage.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    private void settingPage() {
+        Intent intent = new Intent(MainActivity.this, SettingPage.class);
         MainActivity.this.startActivity(intent);
     }
 

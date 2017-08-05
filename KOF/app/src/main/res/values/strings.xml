@@ -9,6 +9,8 @@
     <string name="email">Email</string>
     <string name="email_laboratory">Laboratory Email</string>
 
+    <string name="medical_checkup">Medical Check Up Appointment</string>
+
     <string name="ika_name">Ika Kurniawati</string>
     <string name="ika_phone">085321230866</string>
     <string name="ika_email">ikakurniawati_x6@yahoo.com</string>
@@ -46,12 +48,16 @@
     <string name="action_segarkan">Refresh Data</string>
     <string name="action_done">Done</string>
 
-    <!--Error message-->
+    <!--message-->
     <string name="error_message_title">Application cannot execute process</string>
     <string name="error_message_subtitle">Please check date on your phone</string>
     <string name="ok">Ok</string>
-
+    <string name="cancel">Cancel</string>
+    <string name="reset_filter_message">Reset Filter Counter</string>
+    <string name="reset_filter_message1">This process will delete your filter counter. Total count will set to zero (0).
+                                        Don\'t worry this process will not erase your graphic data.</string>
     <string name="this_app">com.ika.kof.killerofflue</string>
+    <string name="filter_resetted">Your filter has been reset</string>
 
     <!--about-->
     <string name="versi">Version 1.0</string>
@@ -63,10 +69,16 @@
     <string name="all_right_reserved">All rights reserved</string>
     <string name="credit">Credit Picture</string>
 
+    <!--setting-->
+    <string name="setting">Setting</string>
+    <string name="reset_filter">Reset Filter :</string>
+    <string name="reset_button">Reset</string>
 
     <string name="ghifar1">Farhan Ghifari</string>
     <string name="ghifari2">IG : alhudaghifari</string>
     <string name="ghifari3">alhudaghifari@gmail.com</string>
+
+    <string name="faisall"> faisaaall </string>
 
     <!--credit-->
     <string name="graph">Graph Icon :</string>

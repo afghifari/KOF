@@ -11,6 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -245,15 +248,15 @@ public class FragmentBluetooth extends Fragment {
             public void onClick(View v)
             {
 
-//                bluetoothInputHandler();
-//
-//                Handler bluteHandler = new Handler();
-//                bluteHandler.post(handlerBluetooth);
+                bluetoothInputHandler();
 
-                if (myBluetooth.isEnabled())
-                    searchNearestBluetooth();
-                else
-                    showToast(getResources().getString(R.string.please_blute));
+                Handler bluteHandler = new Handler();
+                bluteHandler.post(handlerBluetooth);
+
+//                if (myBluetooth.isEnabled())
+//                    searchNearestBluetooth();
+//                else
+//                    showToast(getResources().getString(R.string.please_blute));
             }
         });
 
@@ -408,7 +411,7 @@ public class FragmentBluetooth extends Fragment {
         }
 
         // show notification when button pressed 161x times
-        if (totCounter % 161 == 0) {
+        if (totCounter % 10 == 0) {
             Intent intent = new Intent(this.getActivity(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -426,6 +429,14 @@ public class FragmentBluetooth extends Fragment {
 
             notificationManager = (NotificationManager) this.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0,notificationBuilder.build());
+
+            try {
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getActivity(), notification);
+                r.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (totCounter == 32766) {
