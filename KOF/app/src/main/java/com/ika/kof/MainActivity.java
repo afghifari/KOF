@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.blueskyNom));
-//        toolbar.setScrollbarFadingEnabled(false);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -74,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.graph);
-        tabLayout.getTabAt(1).setIcon(R.drawable.bluetooth1600);
-        tabLayout.getTabAt(2).setIcon(R.drawable.news);
+        tabLayout.getTabAt(0).setIcon(R.drawable.linechart);
+        tabLayout.getTabAt(1).setIcon(R.drawable.bluetooth2);
+        tabLayout.getTabAt(2).setIcon(R.drawable.foldednewspaper);
         tabLayout.getTabAt(3).setIcon(R.drawable.contact);
 
         inisialisasiListener();

@@ -33,6 +33,7 @@
     <dimen name="ukuran_3dp">3dp</dimen>
     <dimen name="ukuran_4dp">4dp</dimen>
     <dimen name="ukuran_10dp">10dp</dimen>
+    <dimen name="ukuran_13dp">13dp</dimen>
 
     <!--UKURAN TEKS-->
     <dimen name="ukuran8sp">8sp</dimen>

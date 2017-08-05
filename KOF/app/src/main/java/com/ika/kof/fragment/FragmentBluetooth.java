@@ -245,15 +245,15 @@ public class FragmentBluetooth extends Fragment {
             public void onClick(View v)
             {
 
-                bluetoothInputHandler();
+//                bluetoothInputHandler();
+//
+//                Handler bluteHandler = new Handler();
+//                bluteHandler.post(handlerBluetooth);
 
-                Handler bluteHandler = new Handler();
-                bluteHandler.post(handlerBluetooth);
-
-//                if (myBluetooth.isEnabled())
-//                    searchNearestBluetooth();
-//                else
-//                    showToast(getResources().getString(R.string.please_blute));
+                if (myBluetooth.isEnabled())
+                    searchNearestBluetooth();
+                else
+                    showToast(getResources().getString(R.string.please_blute));
             }
         });
 

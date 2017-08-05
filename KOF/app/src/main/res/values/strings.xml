@@ -60,9 +60,19 @@
     <string name="kof_standfor">KOF stands for Killer of Flu. This app is a project from Ika Kurniawati to help
                                 people suffer from flu.</string>
     <string name="copyright_kof">Copyright \u00A9 2017 KOF</string>
-    <string name="all_right_reserved">All right reserved</string>
+    <string name="all_right_reserved">All rights reserved</string>
+    <string name="credit">Credit Picture</string>
+
 
     <string name="ghifar1">Farhan Ghifari</string>
     <string name="ghifari2">IG : alhudaghifari</string>
     <string name="ghifari3">alhudaghifari@gmail.com</string>
+
+    <!--credit-->
+    <string name="graph">Graph Icon :</string>
+    <string name="news">News Icon :</string>
+    <string name="bluetot">Bluetooth Icon :</string>
+    <string name="credit_graph"><div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></string>
+    <string name="credit_news"><div>Icons made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></string>
+    <string name="credit_bluetooth2"><div>Icons made by <a href="https://www.flaticon.com/authors/sherzod-mirzaakhmedov" title="Sherzod Mirzaakhmedov">Sherzod Mirzaakhmedov</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></string>
 </resources>
