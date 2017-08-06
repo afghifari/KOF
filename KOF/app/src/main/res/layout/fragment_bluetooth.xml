@@ -1,0 +1,166 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/bluesky0"
+    tools:context="com.ika.kof.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearstatusblute"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearwarning"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/pink">
+
+            <TextView
+                android:id="@+id/textwarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/warning_blute"
+                android:textStyle="bold"
+                android:textColor="@color/white_pollar"
+                android:textSize="@dimen/warning_text_size"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativelayoutstatusblute"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/statusblute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_blute"
+                android:textStyle="bold"
+                android:textSize="@dimen/tittle_text_size"/>
+
+            <Switch
+                android:id="@+id/switch_blute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearlayoutbluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/linearstatusblute">
+
+        <TextView
+            android:id="@+id/blute_text_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/paired_device"/>
+        <View
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/abubayangan" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/relatif_layout_blute"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linearlayoutbluetooth"
+        android:layout_above="@+id/mLlayoutBottomButtons" >
+
+        <ListView
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/margin_top_3"
+            android:id="@+id/listViewPair"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/available_device"/>
+
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/abubayangan" />
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listViewSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:layout_marginTop="@dimen/margin_top_3"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mLlayoutBottomButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:background="@color/bluesky1"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
